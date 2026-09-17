@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>68.0</apiVersion>
+    <label>SLA Reminder Flow</label>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Check_Reminder</targetReference>
+        </connector>
+        <object>Case</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <decisions>
+        <name>Check_Reminder</name>
+        <label>Check Reminder</label>
+        <locationX>176</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>No Match</defaultConnectorLabel>
+        <rules>
+            <name>High_Priority</name>
+            <label>High Priority</label>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Priority</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>High</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Mark_Sent</targetReference>
+            </connector>
+        </rules>
+    </decisions>
+    <assignments>
+        <name>Mark_Sent</name>
+        <label>Mark Sent</label>
+        <locationX>352</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Sla_Reminder_Sent__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <status>Active</status>
+</Flow>

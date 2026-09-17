@@ -1,0 +1,10 @@
+// Milestone audit — Phase 4/11
+SELECT CaseId, Case.CaseNumber, Case.Status,
+       MilestoneType.Name,
+       TargetDate,
+       IsCompleted,
+       CompletionDate
+FROM CaseMilestone
+WHERE IsCompleted = false
+ORDER BY TargetDate ASC
+LIMIT 20

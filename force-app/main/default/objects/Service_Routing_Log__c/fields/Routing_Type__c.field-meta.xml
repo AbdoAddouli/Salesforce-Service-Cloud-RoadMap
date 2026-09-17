@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Routing_Type__c</fullName>
+    <externalId>false</externalId>
+    <label>Routing Type</label>
+    <required>false</required>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Priority-based</fullName>
+                <default>true</default>
+                <label>Priority-based</label>
+            </value>
+            <value>
+                <fullName>Region-based</fullName>
+                <default>false</default>
+                <label>Region-based</label>
+            </value>
+            <value>
+                <fullName>Product-based</fullName>
+                <default>false</default>
+                <label>Product-based</label>
+            </value>
+            <value>
+                <fullName>Skills-based</fullName>
+                <default>false</default>
+                <label>Skills-based</label>
+            </value>
+            <value>
+                <fullName>Presence Update</fullName>
+                <default>false</default>
+                <label>Presence Update</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

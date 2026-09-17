@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApprovalProcess xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Case.Escalated_Case_Approval</fullName>
+    <active>true</active>
+    <allowRecall>true</allowRecall>
+    <description>Escalated cases require manager approval before resolution. Demonstrates the Case approval process for high-impact customer issues.</description>
+    <label>Escalated Case Approval</label>
+    <submittedBy>
+        <type>RecordOwner</type>
+    </submittedBy>
+    <entryCriteria>
+        <leftValue>Case.Priority</leftValue>
+        <operator>EqualTo</operator>
+        <rightValue>High</rightValue>
+    </entryCriteria>
+    <approvalStep>
+        <name>Manager_Review</name>
+        <label>Manager Review</label>
+        <assignedApprover>
+            <type>Queue</type>
+            <name>High_Priority_Support</name>
+        </assignedApprover>
+        <allowDelegate>true</allowDelegate>
+        <redirectToEditPageForApproval>false</redirectToEditPageForApproval>
+    </approvalStep>
+</ApprovalProcess>

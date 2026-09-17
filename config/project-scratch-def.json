@@ -1,0 +1,16 @@
+{
+  "orgName": "Service Cloud Consultant Roadmap Lab",
+  "edition": "Developer",
+  "features": ["EnableSetPasswordInApi", "ServiceKnowledge", "ServiceUser"],
+  "settings": {
+    "lightningExperienceSettings": {
+      "enableS1DesktopEnabled": true
+    },
+    "mobileSettings": {
+      "enableS1EncryptedStoragePref2": false
+    },
+    "languageSettings": {
+      "enableTranslationWorkbench": true
+    }
+  }
+}

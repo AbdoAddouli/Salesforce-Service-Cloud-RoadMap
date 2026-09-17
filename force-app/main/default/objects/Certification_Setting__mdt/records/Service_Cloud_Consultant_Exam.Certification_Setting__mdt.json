@@ -1,0 +1,17 @@
+{
+    "metadata": {
+        "apiName": "Service_Cloud_Consultant_Exam",
+        "fields": {
+            "Duration_Minutes__c": 105,
+            "Exam_Fee__c": 200,
+            "Exam_Name__c": "Salesforce Certified Agentforce Service Consultant",
+            "Passing_Score__c": 78,
+            "Prerequisite__c": "Salesforce Certified Platform Administrator",
+            "Question_Count__c": 60
+        },
+        "masterLabel": "Service Cloud Consultant Exam",
+        "protected": false,
+        "visibility": "Public"
+    },
+    "records": []
+}

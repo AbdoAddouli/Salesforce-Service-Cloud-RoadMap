@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AssignmentRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <assignmentRule>
+        <fullName>Priority_Based_Routing</fullName>
+        <active>true</active>
+        <ruleEntry>
+            <assignedTo>High_Priority_Support</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.Priority</field>
+                <operation>equals</operation>
+                <value>High</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>Standard_Support</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.Priority</field>
+                <operation>equals</operation>
+                <value>Medium</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>General_Support</assignedTo>
+            <assignedToType>Queue</assignedToType>
+        </ruleEntry>
+    </assignmentRule>
+    <fullName>Case</fullName>
+</AssignmentRules>

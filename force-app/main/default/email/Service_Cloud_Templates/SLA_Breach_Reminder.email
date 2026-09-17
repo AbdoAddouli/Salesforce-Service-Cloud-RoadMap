@@ -1,0 +1,22 @@
+<html>
+<body style="font-family: Arial, Helvetica, sans-serif; font-size: 14px;">
+  <p>Hello {!Case.Owner.Name},</p>
+  <p>This is a reminder that a case milestone is approaching its SLA target date.</p>
+  <table style="border-collapse: collapse;">
+    <tr>
+      <td style="padding: 4px 8px; background: #f3f3f3;"><b>Case</b></td>
+      <td style="padding: 4px 8px;"><a href="{!Case.Link}">{!Case.CaseNumber}</a></td>
+    </tr>
+    <tr>
+      <td style="padding: 4px 8px; background: #f3f3f3;"><b>Subject</b></td>
+      <td style="padding: 4px 8px;">{!Case.Subject}</td>
+    </tr>
+    <tr>
+      <td style="padding: 4px 8px; background: #f3f3f3;"><b>Priority</b></td>
+      <td style="padding: 4px 8px;">{!Case.Priority}</td>
+    </tr>
+  </table>
+  <p>Please review the case and complete the required milestone actions before the target date.</p>
+  <p>Thank you,<br/>Service Cloud Support Team</p>
+</body>
+</html>

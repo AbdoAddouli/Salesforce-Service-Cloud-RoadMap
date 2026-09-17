@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>NAME</field>
+    </columns>
+    <columns>
+        <field>CASE__C</field>
+    </columns>
+    <columns>
+        <field>ENTITLEMENT__C</field>
+    </columns>
+    <columns>
+        <field>MILESTONE_NAME__C</field>
+    </columns>
+    <columns>
+        <field>STATUS__C</field>
+    </columns>
+    <columns>
+        <field>IS_BREACHED__C</field>
+    </columns>
+    <columns>
+        <field>TIME_TO_COMPLETE__C</field>
+    </columns>
+    <format>Tabular</format>
+    <name>Case SLA Compliance</name>
+    <params>
+        <name>enableRecordCount</name>
+        <value>true</value>
+    </params>
+    <reportType>CustomEntity$SLA_Compliance__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+</Report>

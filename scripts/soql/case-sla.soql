@@ -1,0 +1,11 @@
+// Cases with SLA compliance — Phase 4/12
+SELECT Id, CaseNumber, Subject, Status, Priority,
+       Entitlement.Name, Entitlement.Status,
+       EntitlementId,
+       IsEscalated,
+       Sla_Reminder_Sent__c,
+       CreatedDate
+FROM Case
+WHERE EntitlementId != NULL
+ORDER BY CreatedDate DESC
+LIMIT 20

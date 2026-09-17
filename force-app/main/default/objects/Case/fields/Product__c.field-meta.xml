@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Product__c</fullName>
+    <externalId>false</externalId>
+    <label>Product</label>
+    <required>false</required>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Luma</fullName>
+                <default>false</default>
+                <label>Luma</label>
+            </value>
+            <value>
+                <fullName>LumaCare</fullName>
+                <default>false</default>
+                <label>LumaCare</label>
+            </value>
+            <value>
+                <fullName>LumaCloud</fullName>
+                <default>false</default>
+                <label>LumaCloud</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>true</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
