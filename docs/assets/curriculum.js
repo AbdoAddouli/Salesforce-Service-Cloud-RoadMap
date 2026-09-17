@@ -1885,7 +1885,15 @@ const ACADEMY = [
         ]
       }
     ],
-    quiz: null
+    quiz: {
+      title: 'Answers & Results Quiz',
+      mins: 8,
+      questions: [
+        { q: 'What is the most effective way to use the reference solutions?', opts: ['Copy them verbatim without testing', 'Compare them with your own implementation and note where they differ', 'Memorize each configuration value', 'Skip them if you passed the exercises'], a: 1, why: 'Reference solutions are learning tools. Comparing them with what you built — and understanding each difference — turns the exercise into durable knowledge rather than rote copying.' },
+        { q: 'What is the most critical success factor for the capstone project?', opts: ['Using the maximum number of features', 'End-to-end integration across components', 'Matching the exact example data', 'Finishing in the shortest time'], a: 1, why: 'The capstone tests whether case management, entitlements, routing, bots, knowledge and analytics work together as one system. The value is in how the pieces connect, not how many features you enable.' },
+        { q: 'When your solution differs from the reference, what should you check first?', opts: ['Whether the reasoning and requirements are still satisfied', 'Whether your org has more records', 'Whether the UI theme matches', 'Whether you used more clicks'], a: 0, why: 'There can be many valid solutions. The right question is whether your configuration meets the requirement with sound reasoning — not whether it matches the reference keystroke for keystroke.' }
+      ]
+    }
   },
   {
     id: 'use-cases',
