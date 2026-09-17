@@ -915,7 +915,7 @@ const ACADEMY = [
     guide: '09-Einstein-Bots-and-Messaging.md',
     art: [
       { label: 'Bot Flow Diagram', href: 'force-app/main/default/classes/EinsteinRecommendationService.cls' },
-      { label: 'Messaging Channels Config', href: 'force-app/main/default/platformEvent/Service_Event__e.event-meta.xml' }
+      { label: 'Messaging Channels Config', href: 'force-app/main/default/objects/Service_Event__e/Service_Event__e.object-meta.xml' }
     ],
     objectives: [
       'Set up Messaging for In-App and Web',

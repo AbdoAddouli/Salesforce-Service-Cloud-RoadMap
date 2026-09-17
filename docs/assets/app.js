@@ -24,6 +24,11 @@ const $$ = (s, c) => Array.from((c || document).querySelectorAll(s));
 const esc = (s = '') => s.replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
 const cyrb53 = s => { let h = 9; for (let i = 0; i < s.length; i++) h = Math.imul(h ^ s.charCodeAt(i), 2654435761); return (h ^ h >>> 9) >>> 0; };
 
+/* Repository artifacts live outside the published /docs folder, so link to their
+   GitHub blob (works locally and on GitHub Pages). */
+const REPO_BLOB = 'https://github.com/AbdoAddouli/Salesforce-Service-Cloud-RoadMap/blob/main/';
+const artifactHref = h => /^(?:[a-z][a-z0-9+.-]*:|\/\/|#)/i.test(h) ? h : REPO_BLOB + h.split('/').map(encodeURIComponent).join('/');
+
 const MODULES = ACADEMY;
 
 /* ------------------------- progress store ------------------------- */
@@ -501,7 +506,7 @@ function renderModule(mod) {
       <div class="artifacts-grid">
         ${mod.art.map(a => `
           <a class="artifact" target="_blank" rel="noopener"
-             href="${a.href}" style="--c:${mod.color}">
+             href="${artifactHref(a.href)}" style="--c:${mod.color}">
             <span class="a-ico">&#128444;&#65039;</span> <span>${a.label}</span>
           </a>`).join('')}
       </div>
@@ -836,7 +841,7 @@ function renderGuide(mod) {
         <h1>${mod.title}</h1>
         <p class="qc-sub">The full roadmap guide is rendered right here — every section, table, code sample and checklist from ${esc(mod.guide)}. ${read ? '<b>You marked this guide as read.</b>' : 'Read it end-to-end, then mark it as read to complete the module.'}</p>
         <div class="guide-meta">
-          ${mod.art.map(a => `<a class="artifact" target="_blank" rel="noopener" href="${a.href}" style="--c:${mod.color}"><span class="a-ico">&#128444;&#65039;</span> <span>${a.label}</span></a>`).join('')}
+          ${mod.art.map(a => `<a class="artifact" target="_blank" rel="noopener" href="${artifactHref(a.href)}" style="--c:${mod.color}"><span class="a-ico">&#128444;&#65039;</span> <span>${a.label}</span></a>`).join('')}
         </div>
       </div>
       <div class="ph-side">
@@ -1373,23 +1378,18 @@ function bindTopSearch() {
   });
 }
 
-/* ------------------------- lazy event (hashchange) ------------------------- */
-window.addEventListener('hashchange', () => { route = parseHash(); render(); requestAnimationFrame(updateReadBar); });
+/* ------------------------- global UI wiring ------------------------- */
+/* Bound before the first render so a single bad route can never disable
+   the theme switch or the mobile menu. */
 
-/* ------------------------- boot ------------------------- */
-route = parseHash();
-render();
-
-/* reading progress bar */
-function updateReadBar() {
-  const bar = document.getElementById('readBar');
-  if (!bar) return;
-  const h = document.documentElement.scrollHeight - window.innerHeight;
-  const p = h > 0 ? Math.max(0, Math.min(100, (window.scrollY / h) * 100)) : 0;
-  bar.style.width = p + '%';
+/* theme toggle */
+const themeBtn = $('#themeToggle');
+if (themeBtn) {
+  themeBtn.textContent = getTheme() === 'dark' ? '&#127769;' : '&#9728;&#65039;';
+  themeBtn.addEventListener('click', () => {
+    setTheme(getTheme() === 'dark' ? 'light' : 'dark');
+  });
 }
-window.addEventListener('scroll', updateReadBar, { passive: true });
-window.addEventListener('resize', updateReadBar);
 
 /* mobile menu */
 const menuBtn = $('#menuBtn');
@@ -1411,11 +1411,30 @@ document.addEventListener('click', e => {
   }
 });
 
-/* theme toggle */
-const themeBtn = $('#themeToggle');
-if (themeBtn) {
-  themeBtn.textContent = getTheme() === 'dark' ? '&#127769;' : '&#9728;&#65039;';
-  themeBtn.addEventListener('click', () => {
-    setTheme(getTheme() === 'dark' ? 'light' : 'dark');
-  });
+/* reading progress bar */
+function updateReadBar() {
+  const bar = document.getElementById('readBar');
+  if (!bar) return;
+  const h = document.documentElement.scrollHeight - window.innerHeight;
+  const p = h > 0 ? Math.max(0, Math.min(100, (window.scrollY / h) * 100)) : 0;
+  bar.style.width = p + '%';
 }
+window.addEventListener('scroll', updateReadBar, { passive: true });
+window.addEventListener('resize', updateReadBar);
+
+/* ------------------------- lazy event (hashchange) ------------------------- */
+window.addEventListener('hashchange', () => { route = parseHash(); safeRender(); requestAnimationFrame(updateReadBar); });
+
+/* ------------------------- boot ------------------------- */
+/* A failure in one view must not break navigation or the controls. */
+function safeRender() {
+  try {
+    render();
+  } catch (err) {
+    console.error('Render failed', err);
+    const view = $('#view');
+    if (view) view.innerHTML = '<div class="empty"><h2>This page failed to load</h2><p>Pick another phase from the menu.</p><a class="btn primary" href="#/">Back to dashboard</a></div>';
+  }
+}
+route = parseHash();
+safeRender();
